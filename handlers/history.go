@@ -51,9 +51,6 @@ func PrintHistory(page int) {
 		fmt.Println("Showing page", page, "(", offset+1, "-", end, "of", len(*history), "results)")
 
 		// Appending the rows
-		// for i, v := range *history {
-		// 	t.AppendRow(table.Row{i + 1, v.Website, v.TotalLinks, v.IsCompleted, v.Date})
-		// }
 		for i := offset; i < end; i++ {
 			h := (*history)[i]
 			t.AppendRow(table.Row{i + 1, h.Website, h.TotalLinks, h.IsCompleted, h.Date})

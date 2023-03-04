@@ -9,8 +9,7 @@ import (
 )
 
 var (
-	UrlRegex             = regexp.MustCompile(`^(http(s):\/\/.)[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)$`)
-	ValidImageAttributes = []string{"src", "data-src"}
+	UrlRegex = regexp.MustCompile(`^(http(s):\/\/.)[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)$`)
 )
 
 func Start(site string) {
@@ -19,12 +18,6 @@ func Start(site string) {
 		Error.Println("The URL is not valid")
 		return
 	}
-
-	// hostName, err := parseURL(site)
-	// if err != nil {
-	// 	Error.Println(err)
-	// 	return
-	// }
 
 	fmt.Println("Starting to investigate: " + site)
 
@@ -40,7 +33,6 @@ func Start(site string) {
 	})
 
 	c.OnHTML("picture", func(e *colly.HTMLElement) {
-		fmt.Println(e)
 		urls = append(urls, e.Attr("srcset"))
 	})
 
@@ -67,6 +59,7 @@ func Start(site string) {
 		Error.Println(err)
 		return
 	}
+
 	process(&urls, hostname)
 
 }
@@ -82,13 +75,5 @@ func getHostname(site string) (string, error) {
 
 // This is the function that formats all the URLs to the correct format (`https://xxx/xxx...`) and removes the duplicates
 func process(urls *[]string, hostname string) {
-
-	// for _, url := range urls {
-	// 	fmt.Println(url)
-	// }
-	fmt.Print(hostname)
-	for i := 0; i < len(*urls); i++ {
-		fmt.Println((*urls)[i])
-	}
 
 }
