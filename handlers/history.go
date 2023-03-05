@@ -64,6 +64,10 @@ func PrintHistory(page int) {
 	t.Render()
 }
 
+/*
+- This helper function reads the history from the database and returns it
+- If the database doesn't exist, it will throw an error
+*/
 func getHistory() (*[]History, error) {
 	var history []History
 	db, err := getOrFail()
