@@ -4,7 +4,7 @@ import (
 	"log"
 	"os"
 
-	"github.com/BeratOz01/broken-link-checker/handlers"
+	internals "github.com/BeratOz01/broken-link-checker/internals"
 	"github.com/urfave/cli/v2"
 )
 
@@ -18,7 +18,7 @@ func main() {
 				Aliases: []string{"h"},
 				Action: func(c *cli.Context) error {
 					page := c.Int("page")
-					handlers.PrintHistory(page)
+					internals.PrintHistory(page)
 					return nil
 				},
 				Flags: []cli.Flag{
@@ -34,7 +34,7 @@ func main() {
 				Aliases: []string{"s"},
 				Action: func(c *cli.Context) error {
 					website := c.String("website")
-					handlers.Start(website)
+					internals.Start(website)
 					return nil
 				},
 				Flags: []cli.Flag{
